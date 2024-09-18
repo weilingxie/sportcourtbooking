@@ -2,7 +2,7 @@
 const courts: number[] = [1, 2, 3, 4, 5, 6, 7]
 const hours: string[] = ['8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm']
 
-const DayView = () => {
+const DayView: React.FC = () => {
   return (
     <table
       className="min-w-full border-20 text-center text-sm font-light text-surface">
