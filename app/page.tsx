@@ -62,6 +62,11 @@ export default function Home() {
 
   return (
     <main className="items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-slate-700 text-white">
+      <div className="text-4xl bg-slate-700 text-white items-center flex flex-col w-full">
+        Evergreen Badminton Court Booking
+      </div>
+      <br />
+      <br />
       <div className="flex flex-col sm:w-full md:w-1/2 lg:w-1/3 mx-0">
         <Datepicker
           // inputClassName="border bg-slate-300 text-black"
@@ -76,7 +81,7 @@ export default function Home() {
           }}
         />
       </div>
-      
+
       <br />
       <h1 className="flex flex-col items-center text-2xl font-bold">
         {value?.startDate?.toLocaleDateString('en-NZ', {
