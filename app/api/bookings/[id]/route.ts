@@ -1,12 +1,12 @@
 // app/api/bookings/route.ts
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/firebase';
 
-export async function GET({ params }: { params: { id: string } }) {
-  const { id } = params;
+export async function GET(req: NextRequest) {
+  const id = req.nextUrl.searchParams.get("id");
   console.log(`GET /api/bookings/${id}`)
   try {
-    const booking = await db.collection('bookings').doc(id).get();
+    const booking = await db.collection('bookings').doc(id!).get();
     if (!booking.exists) {
       return NextResponse.json({ message: 'Booking not found' }, { status: 404 });
     }
