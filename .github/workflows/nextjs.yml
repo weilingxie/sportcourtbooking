@@ -73,19 +73,20 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      - name: Set up Environment Variables
+        run: |
+          echo "FIRESTORE_PROJECT_ID=${{ secrets.FIRESTORE_PROJECT_ID }}" >> $GITHUB_ENV
+          echo "FIRESTORE_PRIVATE_KEY_ID=${{ secrets.FIRESTORE_PRIVATE_KEY_ID }}" >> $GITHUB_ENV
+          echo "FIRESTORE_PRIVATE_KEY=${{ secrets.FIRESTORE_PRIVATE_KEY }}" >> $GITHUB_ENV
+          echo "FIRESTORE_CLIENT_EMAIL=${{ secrets.FIRESTORE_CLIENT_EMAIL }}" >> $GITHUB_ENV
+          echo "FIRESTORE_CLIENT_ID=${{ secrets.FIRESTORE_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "FIRESTORE_AUTH_URI=${{ secrets.FIRESTORE_AUTH_URI }}" >> $GITHUB_ENV
+          echo "FIRESTORE_TOKEN_URI=${{ secrets.FIRESTORE_TOKEN_URI }}" >> $GITHUB_ENV
+          echo "FIRESTORE_PROVIDER_CERT_URL=${{ secrets.FIRESTORE_PROVIDER_CERT_URL }}" >> $GITHUB_ENV
+          echo "FIRESTORE_CLIENT_CERT_URL=${{ secrets.FIRESTORE_CLIENT_CERT_URL }}" >> $GITHUB_ENV
+          echo "FIRESTORE_UNIVERSE_DOMAIN=${{ secrets.FIRESTORE_UNIVERSE_DOMAIN }}" >> $GITHUB_ENV
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
-        env:
-          FIRESTORE_PROJECT_ID: ${{ secrets.FIRESTORE_PROJECT_ID }}
-          FIRESTORE_PRIVATE_KEY_ID: ${{ secrets.FIRESTORE_PRIVATE_KEY_ID }}
-          FIRESTORE_PRIVATE_KEY: ${{ secrets.FIRESTORE_PRIVATE_KEY }}
-          FIRESTORE_CLIENT_EMAIL: ${{ secrets.FIRESTORE_CLIENT_EMAIL }}
-          FIRESTORE_CLIENT_ID: ${{ secrets.FIRESTORE_CLIENT_ID }}
-          FIRESTORE_AUTH_URI: ${{ secrets.FIRESTORE_AUTH_URI }}
-          FIRESTORE_TOKEN_URI: ${{ secrets.FIRESTORE_TOKEN_URI }}
-          FIRESTORE_PROVIDER_CERT_URL: ${{ secrets.FIRESTORE_PROVIDER_CERT_URL }}
-          FIRESTORE_CLIENT_CERT_URL: ${{ secrets.FIRESTORE_CLIENT_CERT_URL }}
-          FIRESTORE_UNIVERSE_DOMAIN: ${{ secrets.FIRESTORE_UNIVERSE_DOMAIN }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
