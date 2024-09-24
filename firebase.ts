@@ -17,7 +17,6 @@ const serviceAccount = {
 
 console.log("serviceAccount: ", serviceAccount)
 
-// Only initialize the app if there are no initialized apps already (to avoid re-initializing in serverless environments)
 if (!getApps().length) {
   initializeApp({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
