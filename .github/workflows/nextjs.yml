@@ -40,6 +40,18 @@ jobs:
           FIRESTORE_CLIENT_CERT_URL: ${{ secrets.FIRESTORE_CLIENT_CERT_URL }}
           FIRESTORE_UNIVERSE_DOMAIN: ${{ secrets.FIRESTORE_UNIVERSE_DOMAIN }}
     steps:
+      - name: Set Secrets and Change Dir
+        run: | # Secrets needed on the server
+          echo "FIRESTORE_PROJECT_ID=${{secrets.FIRESTORE_PROJECT_ID}}" >> .env.production
+          echo "FIRESTORE_PRIVATE_KEY_ID=${{secrets.FIRESTORE_PRIVATE_KEY_ID}}" >> .env.production
+          echo "FIRESTORE_PRIVATE_KEY=${{secrets.FIRESTORE_PRIVATE_KEY}}" >> .env.production
+          echo "FIRESTORE_CLIENT_EMAIL=${{secrets.FIRESTORE_CLIENT_EMAIL}}" >> .env.production
+          echo "FIRESTORE_CLIENT_ID=${{secrets.FIRESTORE_CLIENT_ID}}" >> .env.production
+          echo "FIRESTORE_AUTH_URI=${{secrets.FIRESTORE_AUTH_URI}}" >> .env.production
+          echo "FIRESTORE_TOKEN_URI=${{secrets.FIRESTORE_TOKEN_URI}}" >> .env.production
+          echo "FIRESTORE_PROVIDER_CERT_URL=${{secrets.FIRESTORE_PROVIDER_CERT_URL}}" >> .env.production
+          echo "FIRESTORE_CLIENT_CERT_URL=${{secrets.FIRESTORE_CLIENT_CERT_URL}}" >> .env.production
+          echo "FIRESTORE_UNIVERSE_DOMAIN=${{secrets.FIRESTORE_UNIVERSE_DOMAIN}}" >> .env.production
       - name: Checkout
         uses: actions/checkout@v4
       - name: Detect package manager
