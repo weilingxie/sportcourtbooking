@@ -1,5 +1,5 @@
 // app/api/bookings/[id]/route.ts
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { db } from '@/firebase';
 
 export async function GET(request: Request,
