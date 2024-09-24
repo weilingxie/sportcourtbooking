@@ -21,6 +21,7 @@ type DayViewProps = {
 
 const DayView = ({ date }: DayViewProps) => {
     const [bookings, setBookings] = useState<BookingType[]>([]);
+    console.log("bookings: ",bookings)
     const [showModal, setShowModal] = useState(false)
     const [bookingInfo, setBookingInfo] = useState<BookingInfoType | null>(null)
 
